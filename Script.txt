@@ -1,0 +1,54 @@
+// ==UserScript==
+// @name         Habblet Ads Remover
+// @namespace    http://tampermonkey.net/
+// @version      1.1.1.1
+// @description  Removedor de anúncios pro habblet
+// @author       Relapso
+// @match        https://www.habblet.city/hotelv2
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=habblet.city
+// @grant        none
+// ==/UserScript==
+// ==UserScript==
+// @name         Habblet Ads Remover
+// @namespace    http://tampermonkey.net/
+// @version      1.1.1.1
+// @description  Removedor de anúncios pro Habblet
+// @author       Relapso
+// @match        https://www.habblet.city/hotelv2
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=habblet.city
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    function verificarERemover() {
+        const divParaRemover = document.querySelector('.fc-ab-dialog');
+        const divRemovePrincipal = document.querySelector('.fc-ab-root');
+        const divremoveprincipal2 = document.querySelector('.fc-dialog-container');
+        if (divParaRemover || divRemovePrincipal || divremoveprincipal2 ) {
+            divParaRemover.remove();
+            divRemovePrincipal.remove();
+            divremoveprincipal2.remove();
+        }
+    }
+
+    const playerElement = document.querySelector('.player');
+    if (playerElement) playerElement.remove();
+
+    const ad1Element = document.querySelector("#ad1");
+    if (ad1Element) ad1Element.remove();
+
+    const ad2Element = document.querySelector("#ad2");
+    if (ad2Element) ad2Element.remove();
+
+    verificarERemover();
+    setInterval(verificarERemover, 100);
+
+    function removerAnuncios() {
+        const elements = document.querySelectorAll(".adsbygoogle.adsbygoogle-noablate");
+        for (const elem of elements) elem.remove();
+    }
+
+    setInterval(removerAnuncios, 100);
+})();
